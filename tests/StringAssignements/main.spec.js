@@ -15,7 +15,8 @@ describe('file main.spec', () => {
         // Act
         const res = prettify(`
         /* eslint-disable */
-        lodash ( )`)
+       function
+        lodash ( )    {const a = 9}`)
         // Assert
         expect(res).toMatchSnapshot()
     })

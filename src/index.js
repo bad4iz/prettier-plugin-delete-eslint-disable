@@ -8,23 +8,19 @@ const { parsers: typescriptParsers } = require('prettier/parser-typescript')
  * @param {string} code
  * @param {import('prettier').ParserOptions} options
  */
-const organizeImports = (code, options) => {
-    if (
-        code.includes('// organize-imports-ignore') ||
-        code.includes('// tslint:disable:ordered-imports')
-    ) {
-    }
-    return code.replaceAll('/* eslint-disable */\n', '')
+const deleteEslintDisable = (code, options) => {
 
-    // try {
-    //     return organize(code, options);
-    // } catch (error) {
-    //     if (process.env.DEBUG) {
-    //         console.error(error);
-    //     }
-    //
-    //     return code;
-    // }
+
+
+    try {
+        return code.replaceAll('/* eslint-disable */\n', '')
+    } catch (error) {
+        if (process.env.DEBUG) {
+            console.error(error);
+        }
+
+        return code;
+    }
 }
 
 /**
@@ -40,7 +36,7 @@ const withOrganizeImportsPreprocess = (parser) => {
          * @param {import('prettier').ParserOptions} options
          */
         preprocess: (code, options) =>
-            organizeImports(
+          deleteEslintDisable(
                 parser.preprocess ? parser.preprocess(code, options) : code,
                 options
             ),
@@ -52,10 +48,10 @@ const withOrganizeImportsPreprocess = (parser) => {
  */
 const plugin = {
     options: {
-        organizeImportsSkipDestructiveCodeActions: {
+        deleteEslintDisable: {
             type: 'boolean',
-            default: true,
-            category: 'OrganizeImports',
+            default: false,
+            category: 'Comments',
             description:
                 'Skip destructive code actions like removing unused imports.',
             since: '2.0.0',
@@ -63,19 +59,11 @@ const plugin = {
     },
     parsers: {
         babel: withOrganizeImportsPreprocess(babelParsers.babel),
-        // 'babel-ts': withOrganizeImportsPreprocess(babelParsers['babel-ts']),
-        // typescript: withOrganizeImportsPreprocess(typescriptParsers.typescript),
+        'babel-ts': withOrganizeImportsPreprocess(babelParsers['babel-ts']),
+        typescript: withOrganizeImportsPreprocess(typescriptParsers.typescript),
         // vue: withOrganizeImportsPreprocess(htmlParsers.vue),
     },
-    languages: [
-        {
-            // The language name
-            name: 'removeEslintDisable',
-            // Parsers that can parse this language.
-            // This can be built-in parsers, or parsers you have contributed via this plugin.
-            parsers: ['removeEslintDisable-parse'],
-        },
-    ],
+
 }
 
 module.exports = plugin
