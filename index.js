@@ -14,8 +14,11 @@ const organizeImports = (code, options) => {
         code.includes('// tslint:disable:ordered-imports')
     ) {
     }
-    return code.replaceAll('/* eslint-disable */\n', '')
-
+    const newCode = code.replaceAll('/* eslint-disable */\n', '')
+    console.log('------------\n')
+    console.log(newCode)
+    console.log('--------\n\n')
+    return newCode
     // try {
     //     return organize(code, options);
     // } catch (error) {
