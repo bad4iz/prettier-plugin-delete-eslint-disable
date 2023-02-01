@@ -1,5 +1,16 @@
 # prettier-plugin-delete-eslint-disable
 
+install 
+`yarn`
+```bash
+yarn -D prettier-plugin-delete-eslint-disable
+```
+or
+`npm`
+```bash
+npmm install --save-dev prettier-plugin-delete-eslint-disable
+```
+
 ## Deleting comments `/* eslint-disable */` in ours code
 `.prettierrc`
 ```json
