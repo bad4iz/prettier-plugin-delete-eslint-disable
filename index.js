@@ -1,76 +1,74 @@
-const { parsers: babelParsers } = require("prettier/parser-babel");
-const { parsers: htmlParsers } = require("prettier/parser-html");
-const { parsers: typescriptParsers } = require("prettier/parser-typescript");
+const { parsers: babelParsers } = require('prettier/parser-babel')
+const { parsers: htmlParsers } = require('prettier/parser-html')
+const { parsers: typescriptParsers } = require('prettier/parser-typescript')
 
-const {
-  organize,
-} = require("../../learning/Дичь/prettier-plugin-organize-imports/lib/organize");
+const { organize } = require('./lib/organize')
+const removeSting = require('./lib/removeSting')
 
 /**
- * Organize the code's imports using the `organizeImports` feature of the TypeScript language service API.
+ * Organize the code's imports using the `wrapper` feature of the TypeScript language service API.
  *
  * @param {string} code
- * @param {import('../../learning/Дичь/prettier-plugin-organize-imports/prettier').ParserOptions} options
+ * @param {import('prettier').ParserOptions} options
  */
-const organizeImports = (code, options) => {
-  if (
-    code.includes("// organize-imports-ignore") ||
-    code.includes("// tslint:disable:ordered-imports")
-  ) {
-    return code;
-  }
+const wrapperPreprocessHook = (code, options) => {
+    try {
+        return organize(removeSting(code, options), options)
+    } catch (error) {
+        if (process.env.DEBUG) {
+            console.error(error)
+        }
 
-  try {
-    return organize(code.replaceAll("/* eslint-disable */", ""), options);
-  } catch (error) {
-    if (process.env.DEBUG) {
-      console.error(error);
+        return code
     }
-
-    return code;
-  }
-};
+}
 
 /**
- * Set `organizeImports` as the given parser's `preprocess` hook, or merge it with the existing one.
+ * wrapperPreprocessHook as the given parser's `preprocess` hook.
  *
- * @param {import('../../learning/Дичь/prettier-plugin-organize-imports/prettier').Parser} parser prettier parser
+ * @param {import('prettier').Parser} parser prettier parser
  */
 const withOrganizeImportsPreprocess = (parser) => {
-  return {
-    ...parser,
-    /**
-     * @param {string} code
-     * @param {import('../../learning/Дичь/prettier-plugin-organize-imports/prettier').ParserOptions} options
-     */
-    preprocess: (code, options) =>
-      organizeImports(
-        parser.preprocess ? parser.preprocess(code, options) : code,
-        options
-      ),
-  };
-};
+    return {
+        ...parser,
+        /**
+         * @param {string} code
+         * @param {import('prettier').ParserOptions} options
+         */
+        preprocess: (code, options) =>
+            wrapperPreprocessHook(
+                parser.preprocess ? parser.preprocess(code, options) : code,
+                options
+            ),
+    }
+}
 
 /**
- * @type {import('../../learning/Дичь/prettier-plugin-organize-imports/prettier').Plugin}
+ * @type {import('prettier').Plugin}
  */
 const plugin = {
-  options: {
-    organizeImportsSkipDestructiveCodeActions: {
-      type: "boolean",
-      default: false,
-      category: "OrganizeImports",
-      description:
-        "Skip destructive code actions like removing unused imports.",
-      since: "2.0.0",
+    options: {
+        sortingImports: {
+            type: 'boolean',
+            default: false,
+            category: 'OrganizeImports',
+            description: '',
+            since: '1.0.0',
+        },
+        deleteEslintDisable: {
+            type: 'boolean',
+            default: false,
+            category: 'OrganizeImports',
+            description: '',
+            since: '1.0.0',
+        },
     },
-  },
-  parsers: {
-    babel: withOrganizeImportsPreprocess(babelParsers.babel),
-    "babel-ts": withOrganizeImportsPreprocess(babelParsers["babel-ts"]),
-    typescript: withOrganizeImportsPreprocess(typescriptParsers.typescript),
-    vue: withOrganizeImportsPreprocess(htmlParsers.vue),
-  },
-};
+    parsers: {
+        babel: withOrganizeImportsPreprocess(babelParsers.babel),
+        'babel-ts': withOrganizeImportsPreprocess(babelParsers['babel-ts']),
+        typescript: withOrganizeImportsPreprocess(typescriptParsers.typescript),
+        vue: withOrganizeImportsPreprocess(htmlParsers.vue),
+    },
+}
 
-module.exports = plugin;
+module.exports = plugin

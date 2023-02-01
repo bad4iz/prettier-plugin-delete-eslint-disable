@@ -1,9 +1,9 @@
 declare module "./prettier" {
   interface Options {
-    organizeImportsSkipDestructiveCodeActions?: boolean;
+    sortingImports?: boolean;
   }
   interface ParserOptions {
-    organizeImportsSkipDestructiveCodeActions?: boolean;
+    sortingImports?: boolean;
   }
 }
 

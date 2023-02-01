@@ -5,7 +5,11 @@ const { format } = require('prettier')
  * @param {prettier.Options} [options]
  */
 const prettify = (code, options) =>
-    format(code, { plugins: ['.'], filepath: 'file.ts' })
+    format(code, {
+        plugins: ['.'],
+        filepath: 'file.ts',
+        deleteEslintDisable: true,
+    })
 
 describe('file main.spec', () => {
     it('should ', () => {
