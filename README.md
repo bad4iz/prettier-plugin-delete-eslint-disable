@@ -1,5 +1,7 @@
 # prettier-plugin-delete-eslint-disable
 
+[npm package](https://www.npmjs.com/package/prettier-plugin-delete-eslint-disable) 
+
 install 
 `yarn`
 ```bash
@@ -28,7 +30,7 @@ not remove comment `/* eslint-disable */` with comment in ours file `// eslint-d
 
 
 Также работает сортировка импортов.   
-Просто включите в своем файле настроек prettier `sortingImports`.
+Просто включите в своем файле настроек prettier `sortingImports`.  
 `.prettierrc`
 ```json
 {
