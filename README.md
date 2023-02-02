@@ -1,11 +1,27 @@
 # prettier-plugin-delete-eslint-disable
+Plugin for prettier. Which removes the eslint-disable rules when editing a file and many other useful things
+
+
+![](https://travis-ci.com/bad4iz/prettier-plugin-delete-eslint-disable.svg?branch=main)
+![](https://img.shields.io/npm/v/prettier-plugin-delete-eslint-disable.svg)
+![](https://img.shields.io/npm/dt/prettier-plugin-delete-eslint-disable.svg)
+
+![](https://img.shields.io/github/commit-activity/m/bad4iz/prettier-plugin-delete-eslint-disable.svg)
+![](https://img.shields.io/github/last-commit/bad4iz/prettier-plugin-delete-eslint-disable.svg)
+
+
+[![Wallaby.js](https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=for-the-badge&logo=github)](https://wallabyjs.com/oss/)
+
+[npm prettier-plugin-delete-eslint-disable](https://www.npmjs.com/package/prettier-plugin-delete-eslint-disable)
+
+
 
 [npm package](https://www.npmjs.com/package/prettier-plugin-delete-eslint-disable) 
 
 install 
 `yarn`
 ```bash
-yarn -D prettier-plugin-delete-eslint-disable
+yarn add -D prettier-plugin-delete-eslint-disable
 ```
 or
 `npm`
@@ -29,8 +45,8 @@ not remove comment `/* eslint-disable */` with comment in ours file `// eslint-d
 ```
 
 
-Также работает сортировка импортов.   
-Просто включите в своем файле настроек prettier `sortingImports`.  
+Import sorting also works.
+Just include prettier in your settings file prettier `sortingImports`.  
 `.prettierrc`
 ```json
 {
