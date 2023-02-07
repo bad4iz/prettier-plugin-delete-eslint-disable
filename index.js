@@ -58,7 +58,7 @@ const plugin = {
         deleteEslintDisable: {
             type: 'boolean',
             default: false,
-            category: 'OrganizeImports',
+            category: 'Eslint',
             description: '',
             since: '1.0.0',
         },
@@ -67,7 +67,6 @@ const plugin = {
         babel: withOrganizeImportsPreprocess(babelParsers.babel),
         'babel-ts': withOrganizeImportsPreprocess(babelParsers['babel-ts']),
         typescript: withOrganizeImportsPreprocess(typescriptParsers.typescript),
-        vue: withOrganizeImportsPreprocess(htmlParsers.vue),
     },
 }
 

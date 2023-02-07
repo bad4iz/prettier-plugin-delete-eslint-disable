@@ -45,18 +45,6 @@ not remove comment `/* eslint-disable */` with comment in ours file `// eslint-d
 ```
 
 
-Import sorting also works.
-Just include prettier in your settings file prettier `sortingImports`.  
-`.prettierrc`
-```json
-{
-   //...,
-  "sortingImports": true
-}
-```
-not sorting ours imports with comment in ours file `// eslint-sorting-imports-ignore`
-
-
 ## Local development
 in prettier-plugin-delete-eslint-disable project
 ```bash
@@ -73,3 +61,71 @@ other project
 ```bash
 npm unlink prettier-plugin-delete-eslint-disable
 ```
+
+## or use `yalc`
+install
+```bash
+npm install -g yalc
+```
+or
+```bash
+yarn global add yalc
+```
+
+### in package use command
+after the package is ready for verification, run...
+```npm
+npm run local:push
+```
+or 
+```yarn
+yarn local:push
+```
+
+### in our (target) project
+add this script in yours `package.json` file
+#### if you use `npm`
+```
+"link:prettier-plugin-delete-eslint-disable": "yalc add prettier-plugin-delete-eslint-disable && yalc link prettier-plugin-delete-eslint-disable && npm install"
+```
+and run
+
+```npm 
+npm run link:prettier-plugin-delete-eslint-disable
+```
+#### or if you use `yarn`
+```
+"link:prettier-plugin-delete-eslint-disable": "yalc add prettier-plugin-delete-eslint-disable && yalc link prettier-plugin-delete-eslint-disable && yarn"
+```
+```yarn 
+yarn link:prettier-plugin-delete-eslint-disable
+```
+
+### Updating the .gitignore file
+Both the .yalc directory and yalc.lock file that Yalc creates in the root of your Git repo are not intended to be committed to Git.
+
+Therefore it’s probably best to add them to the .gitignore file:
+
+```.gitignore
+# Yalc
+/.yalc
+yalc.lock
+```
+
+### Removing Yalc packages (elegant way)
+#### if you use `npm`
+```
+"unlink:prettier-plugin-delete-eslint-disable": "yalc remove prettier-plugin-delete-eslint-disable && npm install",
+```
+
+```npm
+npm run unlink:prettier-plugin-delete-eslint-disable
+```
+#### or if you use `yarn`
+```
+"unlink:prettier-plugin-delete-eslint-disable": "yalc remove prettier-plugin-delete-eslint-disable && yarn"
+```
+
+```yarn
+yarn unlink:prettier-plugin-delete-eslint-disable
+
