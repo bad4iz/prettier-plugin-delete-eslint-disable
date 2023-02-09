@@ -2,7 +2,6 @@ const { parsers: babelParsers } = require('prettier/parser-babel')
 const { parsers: htmlParsers } = require('prettier/parser-html')
 const { parsers: typescriptParsers } = require('prettier/parser-typescript')
 
-const { organize } = require('./lib/organize')
 const removeSting = require('./lib/removeSting')
 
 /**
@@ -13,7 +12,7 @@ const removeSting = require('./lib/removeSting')
  */
 const wrapperPreprocessHook = (code, options) => {
     try {
-        return organize(removeSting(code, options), options)
+        return removeSting(code, options)
     } catch (error) {
         if (process.env.DEBUG) {
             console.error(error)
@@ -48,17 +47,10 @@ const withOrganizeImportsPreprocess = (parser) => {
  */
 const plugin = {
     options: {
-        sortingImports: {
-            type: 'boolean',
-            default: false,
-            category: 'OrganizeImports',
-            description: '',
-            since: '1.0.0',
-        },
         deleteEslintDisable: {
             type: 'boolean',
             default: false,
-            category: 'OrganizeImports',
+            category: 'Eslint',
             description: '',
             since: '1.0.0',
         },
@@ -67,7 +59,6 @@ const plugin = {
         babel: withOrganizeImportsPreprocess(babelParsers.babel),
         'babel-ts': withOrganizeImportsPreprocess(babelParsers['babel-ts']),
         typescript: withOrganizeImportsPreprocess(typescriptParsers.typescript),
-        vue: withOrganizeImportsPreprocess(htmlParsers.vue),
     },
 }
 

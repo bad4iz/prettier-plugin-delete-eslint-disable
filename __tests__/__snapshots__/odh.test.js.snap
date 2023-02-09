@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`file odh.spec should  1`] = `
+"import {
+  CREATE_TYPE_NAME,
+  CreateTypeRF,
+  IsDiffHeightMarkRF,
+  NumberFieldRF,
+} from "core/form/reduxForm/fields";
+"
+`;
