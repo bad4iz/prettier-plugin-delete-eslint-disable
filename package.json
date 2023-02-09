@@ -1,6 +1,6 @@
 {
   "name": "prettier-plugin-delete-eslint-disable",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Plugin for prettier. Which removes the eslint-disable rules when editing a file and many other useful things",
   "main": "index.js",
   "scripts": {
