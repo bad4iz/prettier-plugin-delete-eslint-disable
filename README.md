@@ -2,21 +2,20 @@
 Plugin for prettier. Which removes the eslint-disable rules when editing a file and many other useful things
 
 
-![](https://travis-ci.com/bad4iz/prettier-plugin-delete-eslint-disable.svg?branch=main)
-![](https://img.shields.io/npm/v/prettier-plugin-delete-eslint-disable.svg)
+[![](https://img.shields.io/npm/v/prettier-plugin-delete-eslint-disable.svg)](https://www.npmjs.com/package/prettier-plugin-delete-eslint-disable)
 ![](https://img.shields.io/npm/dt/prettier-plugin-delete-eslint-disable.svg)
-
 ![](https://img.shields.io/github/commit-activity/m/bad4iz/prettier-plugin-delete-eslint-disable.svg)
 ![](https://img.shields.io/github/last-commit/bad4iz/prettier-plugin-delete-eslint-disable.svg)
+[![Wallaby.js](https://img.shields.io/badge/wallaby.js-configured-green.svg)](https://wallabyjs.com)
 
+#### main-branch
+![master test](https://github.com/bad4iz/prettier-plugin-delete-eslint-disable/actions/workflows/test.yml/badge.svg?branch=main)
+#### develop-branch
+![develop test](https://github.com/bad4iz/prettier-plugin-delete-eslint-disable/actions/workflows/test.yml/badge.svg?branch=develop)
 
-[![Wallaby.js](https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=for-the-badge&logo=github)](https://wallabyjs.com/oss/)
 
 [npm prettier-plugin-delete-eslint-disable](https://www.npmjs.com/package/prettier-plugin-delete-eslint-disable)
 
-
-
-[npm package](https://www.npmjs.com/package/prettier-plugin-delete-eslint-disable) 
 
 install 
 `yarn`
