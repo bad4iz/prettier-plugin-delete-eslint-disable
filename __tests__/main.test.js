@@ -24,4 +24,20 @@ describe('file main.spec', () => {
         // Assert
         expect(res).toMatchSnapshot()
     })
+    it('несколько пробелов', () => {
+        expect.hasAssertions()
+        // Arrange (всякие моки)
+
+        // Act
+        const res = prettify(`
+        /*  eslint-disable  */
+       function
+        lodash ( )    {const a = 9}`)
+
+        // Assert
+        expect(res).toBe(`function lodash() {
+  const a = 9;
+}
+`)
+    })
 })

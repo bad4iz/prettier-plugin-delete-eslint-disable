@@ -6,3 +6,10 @@ exports[`file main.spec should  1`] = `
 }
 "
 `;
+
+exports[`file main.spec несколько пробелов 1`] = `
+function lodash() {
+  const a = 9;
+}
+"
+`;
