@@ -1,9 +1,16 @@
 {
 	"compilerOptions": {
 		"module": "commonjs",
-		"target": "es2015",
-		"checkJs": true,
-		"strict": true
+		"target": "ES2024",
+		"strict": true,
+		"outDir": "./dist", // Скомпилированные файлы будут помещаться сюда
+		"rootDir": "./", // Корневая директория исходников
+		"allowJs": false, // Отключаем компиляцию JS-файлов
+		"noEmitOnError": true // Не генерировать файлы при ошибках
 	},
-	"vueCompilerOptions": { "plugins": ["@volar/vue-language-plugin-pug"] }
+	"vueCompilerOptions": {
+		"plugins": [
+			"@volar/vue-language-plugin-pug"
+		]
+	}
 }
